@@ -22,10 +22,9 @@ function App() {
   let year = currentDate.getFullYear();
 
   function totalDaysInMonth(month, year) {
-    return new Date(year, month, 0).getDate();
+    return new Date(year, month + 1, 0).getDate();
   }
-  const days = totalDaysInMonth(currentDate.getMonth() + 1, year);
-  console.log("first", days);
+  const days = totalDaysInMonth(currentDate.getMonth(), year);
 
   const handlePerviousMonth = () => {
     setCurrentDate((perviousDate) => {
@@ -42,6 +41,23 @@ function App() {
       return nextMonthDate;
     });
   };
+
+  const firstDay = new Date(year, currentDate.getMonth(), 1).getDay();
+
+  const dayArray = [];
+  const day = 1;
+
+  //Add empty space before the days
+  for (let i = 0; i < firstDay; i++) {
+    dayArray.push(null);
+  }
+
+  // Add actual days to the calender
+  for (let i = day; i < day; i++) {
+    dayArray.push(i);
+  }
+
+  console.log("first", dayArray);
 
   return (
     <>
