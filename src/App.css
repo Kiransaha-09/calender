@@ -1,0 +1,32 @@
+.first {
+  display: flex;
+  color: black;
+  margin-left: 600px;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 800;
+}
+.main-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 80px;
+}
+.navigation-container {
+  display: flex;
+  margin-left: 124px;
+  color: blue;
+  font-size: 22px;
+  font-weight: 800;
+  gap: 28px;
+  cursor: pointer;
+}
+.week-container {
+  display: flex;
+  gap: 20px;
+  margin-left: 610px;
+  margin-top: 20px;
+  font-size: large;
+  font-weight: 400;
+  color: black;
+}
