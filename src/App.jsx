@@ -24,14 +24,6 @@ function App() {
   let month = monthNames[currentDate.getMonth()];
   let year = currentDate.getFullYear();
 
-  // Calculate total number of day's in a month
-  function totalDaysInMonth(month, year) {
-    return new Date(year, month + 1, 0).getDate();
-  }
-
-  // Use above function to calculate current month total days count
-  const days = totalDaysInMonth(currentDate.getMonth(), year);
-
   // Handle navigation to previous month
   const handlePerviousMonth = () => {
     setCurrentDate((perviousDate) => {
@@ -62,6 +54,14 @@ function App() {
 
   // Calculate the start day of a month
   const firstDay = new Date(year, currentDate.getMonth(), 1).getDay();
+
+  // Use above function to calculate current month total days count
+  const days = totalDaysInMonth(currentDate.getMonth(), year);
+
+  // Calculate total number of day's in a month
+  function totalDaysInMonth(month, year) {
+    return new Date(year, month + 1, 0).getDate();
+  }
 
   // Empty array to add days count
   const dayArray = [];
