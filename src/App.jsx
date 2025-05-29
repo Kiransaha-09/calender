@@ -67,6 +67,11 @@ function App() {
   const dayArray = [];
   const day = 1;
 
+  //Add empty space before the days
+  for (let i = 0; i < firstDay; i++) {
+    dayArray.push(null);
+  }
+
   // Add actual days count to the calender
   for (let i = day; i <= days; i++) {
     dayArray.push(i);
@@ -107,7 +112,9 @@ function App() {
           return (
             <div
               key={index}
-              className={`day ${selectedDate === day ? "selected" : ""}
+              className={`day ${
+                day !== null && selectedDate === day ? "selected" : ""
+              }
               ${day === today ? "today" : ""}`}
               onClick={() => handleSelectedDate(day)}
             >
