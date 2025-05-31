@@ -1,27 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 
-function App() {
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+function Calender() {
   const weekNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [today, setToday] = useState(new Date().getDate());
 
-  let month = monthNames[currentDate.getMonth()];
+  let month = currentDate.toLocaleString("default", { month: "short" });
   let year = currentDate.getFullYear();
 
   // Handle navigation to previous month
@@ -64,18 +50,20 @@ function App() {
   }
 
   // Empty array to add days count
-  const dayArray = [];
-  const day = 1;
 
-  //Add empty space before the days
-  for (let i = 0; i < firstDay; i++) {
-    dayArray.push(null);
-  }
+  const getDayArray = () => {
+    const dayArray = [];
+    //Add empty space before the days
+    for (let i = 0; i < firstDay; i++) {
+      dayArray.push(null);
+    }
 
-  // Add actual days count to the calender
-  for (let i = day; i <= days; i++) {
-    dayArray.push(i);
-  }
+    // Add actual days count to the calender
+    for (let i = 1; i <= days; i++) {
+      dayArray.push(i);
+    }
+    return dayArray;
+  };
 
   // To get selected date
   const handleSelectedDate = (day) => {
@@ -91,7 +79,7 @@ function App() {
     return `${selectDate}/${selectMonth}/${selectyear}`;
   };
   return (
-    <>
+    <div className="main-layout">
       <div className="main-container">
         <div className="first">
           {month}
@@ -108,7 +96,7 @@ function App() {
         })}
       </div>
       <div className="days-container">
-        {dayArray.map((day, index) => {
+        {getDayArray().map((day, index) => {
           return (
             <div
               key={index}
@@ -126,8 +114,8 @@ function App() {
       <div className="selectedDate">
         {selectedDate && <div>Selected: {formate(selectedDate)}</div>}
       </div>
-    </>
+    </div>
   );
 }
 
-export default App;
+export default Calender;
