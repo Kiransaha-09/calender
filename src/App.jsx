@@ -13,17 +13,24 @@ function calender() {
   let month = currentDate.toLocaleString("default", { month: "short" });
   let year = currentDate.getFullYear();
 
+  // Get pervious month
+  const getPerviousMonth = (currentDate) => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    return new Date(year, month, 0);
+  };
+
   // Handle navigation to previous month
   const handlePerviousMonth = () => {
-    setCurrentDate((perviousDate) => {
-      const perviousMonthDate = new Date(perviousDate);
-      perviousMonthDate.setMonth(perviousMonthDate.getMonth() - 1);
+    setCurrentDate((previousMonth) => {
+      const previousMonthDate = getPerviousMonth(previousMonth);
 
       const now = new Date();
-      const currentMonth = perviousMonthDate.getMonth() === now.getMonth();
+      const currentMonth = previousMonthDate.getMonth() === now.getMonth();
       setToday(currentMonth ? now.getDate() : null);
       setSelectedDate(null);
-      return perviousMonthDate;
+
+      return previousMonthDate;
     });
   };
 
