@@ -1,8 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 
-function Calender() {
-  const weekNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+import MonthNavigation from "./components/monthNavigation";
+import Weekdays from "./components/Weekdays";
+import Days from "./components/Days";
+
+function calender() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [today, setToday] = useState(new Date().getDate());
@@ -49,9 +52,8 @@ function Calender() {
     return new Date(year, month + 1, 0).getDate();
   }
 
-  // Empty array to add days count
-
   const getDayArray = () => {
+    // Empty array to add days count
     const dayArray = [];
     //Add empty space before the days
     for (let i = 0; i < firstDay; i++) {
@@ -78,6 +80,7 @@ function Calender() {
     const selectyear = formatedDate.getFullYear();
     return `${selectDate}/${selectMonth}/${selectyear}`;
   };
+
   return (
     <div className="main-layout">
       <div className="main-container">
@@ -85,32 +88,21 @@ function Calender() {
           {month}
           <div>{year}</div>
         </div>
-        <div className="navigation-container">
-          <div onClick={handlePerviousMonth}>＜</div>
-          <div onClick={handleNextMonth}>＞</div>
+        <div>
+          <MonthNavigation
+            handleNextMonth={handleNextMonth}
+            handlePerviousMonth={handlePerviousMonth}
+          />
         </div>
       </div>
-      <div className="week-container">
-        {weekNames.map((week, key) => {
-          return <div key={key}>{week}</div>;
-        })}
-      </div>
-      <div className="days-container">
-        {getDayArray().map((day, index) => {
-          return (
-            <div
-              key={index}
-              className={`day ${
-                day !== null && selectedDate === day ? "selected" : ""
-              }
-              ${day === today ? "today" : ""}`}
-              onClick={() => handleSelectedDate(day)}
-            >
-              {day}
-            </div>
-          );
-        })}
-      </div>
+      <Weekdays />
+      <Days
+        getDayArray={getDayArray}
+        today={today}
+        handleSelectedDate={handleSelectedDate}
+        selectedDate={selectedDate}
+        onSelect={setSelectedDate}
+      />
       <div className="selectedDate">
         {selectedDate && <div>Selected: {formate(selectedDate)}</div>}
       </div>
@@ -118,4 +110,4 @@ function Calender() {
   );
 }
 
-export default Calender;
+export default calender;
