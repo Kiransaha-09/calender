@@ -6,9 +6,24 @@ import Weekdays from "./components/Weekdays";
 import Days from "./components/Days";
 
 function calender() {
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [today, setToday] = useState(new Date().getDate());
+  const [showPopup, setShowPopup] = useState(false);
 
   let month = currentDate.toLocaleString("default", { month: "short" });
   let year = currentDate.getFullYear();
@@ -26,7 +41,9 @@ function calender() {
       const previousMonthDate = getPerviousMonth(previousMonth);
 
       const now = new Date();
-      const currentMonth = previousMonthDate.getMonth() === now.getMonth();
+      const currentMonth =
+        previousMonthDate.getMonth() === now.getMonth() &&
+        previousMonthDate.getFullYear() === now.getFullYear();
       setToday(currentMonth ? now.getDate() : null);
       setSelectedDate(null);
 
@@ -41,7 +58,9 @@ function calender() {
       nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
 
       const now = new Date();
-      const currentMonth = nextMonthDate.getMonth() === now.getMonth();
+      const currentMonth =
+        nextMonthDate.getMonth() === now.getMonth() &&
+        nextMonthDate.getFullYear() === now.getFullYear();
       setToday(currentMonth ? now.getDate() : null);
       setSelectedDate(null);
       return nextMonthDate;
@@ -49,7 +68,11 @@ function calender() {
   };
 
   // Calculate the start day of a month
-  const firstDay = new Date(year, currentDate.getMonth(), 1).getDay();
+  const firstDay = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1
+  ).getDay();
 
   // Use above function to calculate current month total days count
   const days = totalDaysInMonth(currentDate.getMonth(), year);
@@ -59,7 +82,8 @@ function calender() {
     return new Date(year, month + 1, 0).getDate();
   }
 
-  const getDayArray = () => {
+  const totalDatesRow = Array(7).fill(Array(7).fill(null));
+  const getDayArray = (totalDatesRow) => {
     // Empty array to add days count
     const dayArray = [];
     //Add empty space before the days
@@ -88,28 +112,65 @@ function calender() {
     return `${selectDate}/${selectMonth}/${selectyear}`;
   };
 
+  // To show month and year from calender selection
+  const handleCalenderOpen = () => {
+    setShowPopup(true);
+  };
+
+  const handleMonth = (month) => {
+    // debugger;
+    const updatedDate = new Date(currentDate);
+    updatedDate.setMonth(monthNames.indexOf(month));
+    setCurrentDate(updatedDate);
+
+    const now = new Date();
+    const currentDay =
+      updatedDate.getMonth() === now.getMonth() &&
+      updatedDate.getFullYear() === now.getFullYear();
+    setToday(currentDay ? now.getDate() : null);
+    setShowPopup(false);
+    setSelectedDate(null);
+  };
   return (
-    <div className="main-layout">
-      <div className="main-container">
-        <div className="first">
-          {month}
-          <div>{year}</div>
+    <div className="layout">
+      <div className="main-layout">
+        <div className="main-container">
+          <div className="first">
+            {month}
+            <div>{year} </div>
+            <div className="calender" onClick={handleCalenderOpen}>
+              🗓️
+            </div>
+            {showPopup && (
+              <div className="popup-overlay">
+                <div className="popup-content">
+                  {monthNames.map((month, index) => {
+                    return (
+                      <div key={index} onClick={() => handleMonth(month)}>
+                        {month}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+          <div>
+            <MonthNavigation
+              handleNextMonth={handleNextMonth}
+              handlePerviousMonth={handlePerviousMonth}
+            />
+          </div>
         </div>
-        <div>
-          <MonthNavigation
-            handleNextMonth={handleNextMonth}
-            handlePerviousMonth={handlePerviousMonth}
-          />
-        </div>
+        <Weekdays />
+        <Days
+          getDayArray={getDayArray}
+          today={today}
+          handleSelectedDate={handleSelectedDate}
+          selectedDate={selectedDate}
+          onSelect={setSelectedDate}
+        />
       </div>
-      <Weekdays />
-      <Days
-        getDayArray={getDayArray}
-        today={today}
-        handleSelectedDate={handleSelectedDate}
-        selectedDate={selectedDate}
-        onSelect={setSelectedDate}
-      />
       <div className="selectedDate">
         {selectedDate && <div>Selected: {formate(selectedDate)}</div>}
       </div>

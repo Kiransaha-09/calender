@@ -1,6 +1,6 @@
 import React from "react";
 
-function Days({ today, selectedDate , getDayArray , handleSelectedDate}) {
+function Days({ today, selectedDate, getDayArray, handleSelectedDate }) {
   return (
     <div className="days-container">
       {getDayArray().map((day, index) => {
