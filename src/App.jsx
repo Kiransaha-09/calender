@@ -51,11 +51,17 @@ function calender() {
     });
   };
 
+  // Get next month
+  const getNextMonth = (currentDate) => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    return new Date(year, month, 1);
+  };
+
   // Handle navigation to next month
   const handleNextMonth = () => {
     setCurrentDate((nextmonth) => {
-      const nextMonthDate = new Date(nextmonth);
-      nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+      const nextMonthDate = getNextMonth(nextmonth);
 
       const now = new Date();
       const currentMonth =
@@ -82,8 +88,8 @@ function calender() {
     return new Date(year, month + 1, 0).getDate();
   }
 
-  const totalDatesRow = Array(7).fill(Array(7).fill(null));
-  const getDayArray = (totalDatesRow) => {
+  // const totalDatesRow = Array(7).fill(Array(7).fill(null));
+  const getDayArray = () => {
     // Empty array to add days count
     const dayArray = [];
     //Add empty space before the days
@@ -138,7 +144,7 @@ function calender() {
           <div className="first">
             {month}
             <div>{year} </div>
-            <div className="calender" onClick={handleCalenderOpen}>
+            <div className="calender-icon" onClick={handleCalenderOpen}>
               🗓️
             </div>
             {showPopup && (
