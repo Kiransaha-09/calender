@@ -5,6 +5,7 @@
   flex-direction: column;
   background-color: lightgray;
   position: relative;
+  padding: 0 24px;
 }
 .first {
   display: flex;
@@ -38,42 +39,17 @@
   color: black;
   background-color: darkgray;
 }
-.days-container {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-auto-rows: 40px;
-  padding-top: 16px;
-  width: 310px;
-  margin-left: 40px;
-  box-sizing: border-box;
-}
-.day {
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-}
+
 .selectedDate {
-  margin-left: 100px;
-  font-size: 16px;
-  font-weight: 800;
-}
-.selected {
-  border: 2px solid blue;
-  border-radius: 50%;
-  font-weight: bold;
-  cursor: pointer;
+  padding-right: 56px;
+  margin-top: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25px;
-  height: 25px;
-}
-.today {
-  color: blue;
-  cursor: pointer;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 800;
 }
+
 .layout {
   width: 350px;
   border: 1px solid grey;

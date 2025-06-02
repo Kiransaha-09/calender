@@ -1,0 +1,32 @@
+.days-container {
+  display: grid;
+  margin: 10px 0px 10px 0px;
+  grid-auto-rows: minmax(24px, auto);
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.day {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.selected {
+  border: 1px solid blue;
+  border-radius: 50%;
+}
+
+.today {
+  color: blue;
+  cursor: pointer;
+  font-weight: 600;
+}
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 28px;
+  margin-bottom: 10px;
+}
