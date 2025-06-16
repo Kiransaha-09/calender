@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import MonthNavigation from "./monthNavigation";
+import MonthNavigation from "./MonthNavigation";
 import Weekdays from "./Weekdays";
-import Days from "./Days/Days";
-import { getFullYear } from "../helpers/date.helpers";
-import { addMonth, getTodayDate } from "../helpers/date.helpers";
-import { MONTH_NAMES } from "../constants/date.constants";
+import Days from "./components/Days/Days";
+import { getFullYear } from "../../helpers/date.helpers";
+import { addMonth, getTodayDate } from "../../helpers/date.helpers";
+import { MONTH_NAMES } from "../../constants/date.constants";
 
 function Calender({ setSelectedDate, selectedDate }) {
   const [currentDate, setCurrentDate] = useState(new Date());

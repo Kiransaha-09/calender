@@ -1,4 +1,7 @@
-import { getFirstDayOfMonth, getFullYear } from "../../helpers/date.helpers";
+import {
+  getFirstDayOfMonth,
+  getFullYear,
+} from "../../../../helpers/date.helpers";
 
 export const getCalendarArray = (currentDate) => {
   const firstDay = getFirstDayOfMonth(currentDate);
