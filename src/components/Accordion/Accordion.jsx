@@ -1,16 +1,22 @@
 import React from "react";
 import { useState } from "react";
 
-function Accordion({ data, allowOpenAll = false }) {
-  const [activeAccordion, setActiveAccordion] = useState(null);
+function Accordion({ data }) {
+  const [accordionArray, setAccordionArray] = useState([]);
 
   const handleActiveAccordion = (index) => {
-    setActiveAccordion((preIndex) => (preIndex === index ? null : index));
+    setAccordionArray((arr) => {
+      if (arr.includes(index)) {
+        return arr.filter((item) => item !== index);
+      } else {
+        return [...arr, index];
+      }
+    });
   };
-
   return (
     <div className="accordion-container">
       {data.map((data, index) => {
+        const isOpen = accordionArray.includes(index + 1);
         return (
           <div key={index}>
             <button
@@ -20,7 +26,7 @@ function Accordion({ data, allowOpenAll = false }) {
             >
               {data.name}
             </button>
-            {activeAccordion === index + 1 && <p>{data.description}</p>}
+            {isOpen && <p>{data.description}</p>}
           </div>
         );
       })}

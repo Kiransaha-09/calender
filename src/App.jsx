@@ -40,8 +40,7 @@ function App() {
       </div>
       <div>
         <h3>Accordion</h3>
-        <Accordion data={data} allowOpenAll={true} />
-        {/* Accordion component used here */}
+        <Accordion data={data} allowOpenAll={false} />
       </div>
     </div>
   );
