@@ -5,7 +5,6 @@ function Accordion({ data, isSingleOpenEnabled }) {
   const [accordionArray, setAccordionArray] = useState([]);
 
   const handleActiveAccordion = (index) => {
-    console.log("first", index);
     setAccordionArray((arr) => {
       if (arr.includes(index)) {
         return arr.filter((item) => item !== index);
