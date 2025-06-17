@@ -40,7 +40,7 @@ function App() {
       </div>
       <div>
         <h3>Accordion</h3>
-        <Accordion data={data} allowOpenAll={false} />
+        <Accordion data={data} isSingleOpenEnabled={false} />
       </div>
     </div>
   );
