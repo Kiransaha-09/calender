@@ -94,3 +94,26 @@
   justify-content: center;
   flex-direction: column;
 }
+.accordionmain-container {
+  border-bottom: 1px solid rgb(0, 0, 0, 0.3);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.accordion-name {
+  padding: 8px 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+.accordion-description {
+  margin: 12px;
+}
+.down-arrow {
+  width: 16px;
+  height: 16px;
+}

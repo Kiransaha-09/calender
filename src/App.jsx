@@ -5,24 +5,31 @@ import { formatedSelectedDate } from "./helpers/date.helpers";
 import Calender from "./components/Calendar/Calender";
 import Accordion from "./components/Accordion/Accordion";
 
+const data = [
+  {
+    name: "Accordion 1",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  },
+  {
+    name: "Accordion 2",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  },
+  {
+    name: "Accordion 3",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
+  },
+];
+
+const ACCORDION_TYPE = {
+  SINGLE: "SINGLE",
+  MULTIPLE: "MULTIPLE",
+};
+
 function App() {
-  const data = [
-    {
-      name: "Accordion 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-    },
-    {
-      name: "Accordion 2",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-    },
-    {
-      name: "Accordion 3",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-    },
-  ];
+  const [accordionType, setAccordionType] = useState(ACCORDION_TYPE.SINGLE);
   const [selectedDate, setSelectedDate] = useState(null);
   return (
     <div>
@@ -40,7 +47,17 @@ function App() {
       </div>
       <div>
         <h3>Accordion</h3>
-        <Accordion data={data} isSingleOpenEnabled={false} />
+        <select
+          value={accordionType}
+          onChange={(ev) => setAccordionType(ev.target.value)}
+        >
+          <option value={ACCORDION_TYPE.SINGLE}>Single</option>
+          <option value={ACCORDION_TYPE.MULTIPLE}>Multiple</option>
+        </select>
+        <Accordion
+          data={data}
+          isSingleOpenEnabled={accordionType === ACCORDION_TYPE.SINGLE}
+        />
       </div>
     </div>
   );
