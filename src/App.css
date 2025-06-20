@@ -117,3 +117,21 @@
   width: 16px;
   height: 16px;
 }
+.tab-container {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 26px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.tab-subconatiner {
+  border-bottom: 1px solid rgb(0, 0, 0, 0.3);
+}
+.tab-decriptionconatiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 26px;
+}

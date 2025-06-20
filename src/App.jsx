@@ -4,6 +4,7 @@ import "./App.css";
 import { formatedSelectedDate } from "./helpers/date.helpers";
 import Calender from "./components/Calendar/Calender";
 import Accordion from "./components/Accordion/Accordion";
+import Tabs from "./components/Tabs/Tabs";
 
 const data = [
   {
@@ -27,6 +28,21 @@ const ACCORDION_TYPE = {
   SINGLE: "SINGLE",
   MULTIPLE: "MULTIPLE",
 };
+
+const tabData=[
+  {
+    name:"ITEM ONE",
+    description:"Item 1"
+  },
+  {
+    name:"ITEM TWO",
+    description:"Item 2"
+  },
+  {
+    name:"ITEM THREE",
+    description:"Item 3"
+  }
+]
 
 function App() {
   const [accordionType, setAccordionType] = useState(ACCORDION_TYPE.SINGLE);
@@ -58,6 +74,10 @@ function App() {
           data={data}
           isSingleOpenEnabled={accordionType === ACCORDION_TYPE.SINGLE}
         />
+      </div>
+      <div>
+        <h3>Tabs</h3>
+        <Tabs tabData={tabData}/>
       </div>
     </div>
   );
