@@ -5,6 +5,7 @@ import { formatedSelectedDate } from "./helpers/date.helpers";
 import Calender from "./components/Calendar/Calender";
 import Accordion from "./components/Accordion/Accordion";
 import Tabs from "./components/Tabs/Tabs";
+import FileExplorer from "./components/FileExplorer/FileExplorer";
 
 const data = [
   {
@@ -61,7 +62,7 @@ function App() {
           )}
         </div>
       </div>
-      <div>
+      {/* <div>
         <h3>Accordion</h3>
         <select
           value={accordionType}
@@ -78,6 +79,10 @@ function App() {
       <div>
         <h3>Tabs</h3>
         <Tabs tabData={tabData}/>
+      </div> */}
+      <div>
+        <h3>File explorer</h3>
+        <FileExplorer/>
       </div>
     </div>
   );
