@@ -135,3 +135,36 @@
   justify-content: center;
   margin-top: 26px;
 }
+.file-image {
+  width: 10px;
+  height: 10px;
+}
+.folder-conatiner {
+  display: flex;
+  align-items: center;
+}
+.common {
+  cursor: pointer;
+}
+.file-maincontainer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.file-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+.close-modal {
+  position: absolute;
+  left: 254px;
+  top: -12px;
+}
+
+.fileExplorerContainer {
+  box-sizing: border-box;
+  padding: 24px 40px;
+}
