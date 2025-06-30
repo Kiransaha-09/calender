@@ -168,3 +168,6 @@
   box-sizing: border-box;
   padding: 24px 40px;
 }
+.nested-folder{
+  padding-left:20px
+}
